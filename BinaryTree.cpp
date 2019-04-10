@@ -235,7 +235,6 @@ BinaryTreeNode<T>* BinaryTree<T>::FindNode(BinaryTreeNode<T>* root, const T & ke
 	return temp;
 }
 
-
 template<class T>
 void BinaryTree<T>::PreOrder_no(BinaryTreeNode<T>* root)
 {
@@ -243,22 +242,20 @@ void BinaryTree<T>::PreOrder_no(BinaryTreeNode<T>* root)
 		return;
 	BinaryTreeNode<T>* stack[STACK_MAX_SIZE];
 	BinaryTreeNode<T>* q = root;
-	int top = 1;
-	stack[0] == NULL;
-	while (q)
+	int top = 0;
+	while (q||top)
 	{
-		std::cout << q->value() << ' ';
-		if (q->rightchild())
+		if (q)
 		{
+			std::cout << q->value() << ' ';
 			if (top + 1 > STACK_MAX_SIZE)
 			{
 				std::cout << "overflow!" << std::endl;
 				return;
 			}
 			stack[top++] = q->rightchild();
-		}
-		if (q->leftchild())
 			q = q->leftchild();
+		}
 		else
 		{
 			q = stack[--top];
